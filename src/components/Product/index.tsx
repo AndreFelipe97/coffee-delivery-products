@@ -24,7 +24,7 @@ export function Product({imgPath, title, subtile, tags,price}: ProductProps) {
       <p className={style['subtitle-product']}>{subtile}</p>
       <div className={style['footer']}>
         <div>
-          <span>R$</span> <span>{price}</span>
+          <span>{price}</span>
         </div>
         <div>
           <div>
