@@ -1,0 +1,19 @@
+.brand-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5.06rem;
+  height: 1.31rem;
+  background-color: var(--yellow-100);
+  border-radius: 100px;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem;
+
+  span {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 0.625rem;
+    line-height: 13px;
+    color: var(--yellow-900);
+  }
+}
