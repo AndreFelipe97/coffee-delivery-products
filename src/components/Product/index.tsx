@@ -14,10 +14,12 @@ interface ProductProps {
 export function Product({imgPath, title, subtile, tags,price}: ProductProps) {
   return (
     <div className={style['product-container']}>
-      <img src={imgPath} alt="" width={120} height={120} />
-      {tags.map(tag => (
-        <Brand key={tag} tag={tag}/>
-      ))}
+      <img src={imgPath} alt="" />
+      <div className={style['brand-container']}>
+        {tags.map(tag => (
+          <Brand key={tag} tag={tag}/>
+        ))}
+      </div>
       <h1 className={style['title-product']}>{title}</h1>
       <p className={style['subtitle-product']}>{subtile}</p>
       <div className={style['footer']}>
