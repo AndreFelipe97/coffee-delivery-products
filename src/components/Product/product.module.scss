@@ -6,7 +6,7 @@
   padding: 2rem;
 
   width: 25.6rem;
-  height: 30.99rem;
+  height: 31rem;
   background-color: var(--gray-100);
   border-radius: 6px 36px;
 
@@ -45,5 +45,64 @@
   .footer {
     display: flex;
     gap: 2.24rem;
+
+    .price {
+      font-family: 'Baloo 2', sans-serif;
+      font-weight: 800;
+      font-size: 2.4rem;
+      line-height: 31.2px;
+      text-align: right;
+    }
+
+    .cart-itens-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+
+      .amount {
+        display: flex;
+        background-color: var(--gray-500);
+        width: 7.2rem;
+        height: 3.8rem;
+        border-radius: 6px;
+
+        button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: transparent;
+          border: none;
+          width: 2.4rem;
+          height: 100%;
+          color: var(--purple-500);
+        }
+
+        span {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: 'Roboto', sans-serif;
+          font-weight: 800;
+          font-size: 1.6rem;
+          line-height: 20.8px;
+          color: var(--brown-900);
+          width: 2.4rem;
+          height: 100%;
+        }
+      }
+
+      .add-cart {
+        color: var(--white);
+        width: 3.8rem;
+        height: 3.8rem;
+        border-radius: 6px;
+        border: none;
+        background-color: var(--purple-900);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
   }
 }

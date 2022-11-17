@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { FiPlus, FiMinus, FiShoppingCart } from "react-icons/fi";
 
 import { Brand } from '../Brand';
 
@@ -12,6 +14,16 @@ interface ProductProps {
 }
 
 export function Product({imgPath, title, subtile, tags,price}: ProductProps) {
+  const [amount, setAmount] = useState<number>(0);
+
+  function addAmount() {
+    setAmount(state => state + 1)
+  }
+
+  function minusAmount() {
+    setAmount(state => state > 0 ? state - 1 : state)
+  }
+
   return (
     <div className={style['product-container']}>
       <img src={imgPath} alt="" />
@@ -23,16 +35,14 @@ export function Product({imgPath, title, subtile, tags,price}: ProductProps) {
       <h1 className={style['title-product']}>{title}</h1>
       <p className={style['subtitle-product']}>{subtile}</p>
       <div className={style['footer']}>
-        <div>
-          <span>{price}</span>
+        <div className={style['price']}>
+          <span>R$ {price}</span>
         </div>
-        <div>
-          <div>
-            <button>sub</button><span>1</span><button>add</button>
+        <div className={style['cart-itens-container']}>
+          <div className={style['amount']}>
+            <button type="button" onClick={minusAmount}><FiMinus /></button><span>{amount}</span><button type="button" onClick={addAmount}><FiPlus /></button>
           </div>
-          <div>
-            <button>Add cart</button>
-          </div>
+          <button className={style['add-cart']}><FiShoppingCart /></button>
         </div>
       </div>
     </div>
