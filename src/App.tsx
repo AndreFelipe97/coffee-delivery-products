@@ -8,7 +8,7 @@ function App() {
       <h1>Nossos café</h1>
       <div className={styles['product-container']}>
         {products.map(product => (
-          <Product key={String(product.id)} imgPath={product.imagePath} title={product.title}  tags={product.tags} subtile={product.subtitle} price={product.price} />
+          <Product key={String(product.id)} id={product.id} imgPath={product.imagePath} title={product.title}  tags={product.tags} subtile={product.subtitle} price={product.price} />
         ))}
       </div>
     </div >
