@@ -34,11 +34,9 @@ export function Product({imgPath, title, subtile, tags,price}: ProductProps) {
 
   function addCart() {
     if (amount > 0) {
-      setProducts([...products, {
+      const newProducts = [...products, {
         title, imgPath, price, amount
-      }]);
-
-      const newProducts = JSON.stringify(products);
+      }];
 
       if(localStorage.getItem("@COFFEE_DELIVERY_PRODUCTS")) {
         console.log('Entrou aqui!')
@@ -52,13 +50,16 @@ export function Product({imgPath, title, subtile, tags,price}: ProductProps) {
           "@COFFEE_DELIVERY_PRODUCTS",
           oldProducts
         );
-        console.log(localStorage.getItem("@COFFEE_DELIVERY_PRODUCTS"));
       } else {
         localStorage.setItem(
           "@COFFEE_DELIVERY_PRODUCTS",
-          newProducts
+          JSON.stringify(newProducts)
         )
       }
+
+      setProducts([...products, {
+        title, imgPath, price, amount
+      }]);
     }
   }
 
