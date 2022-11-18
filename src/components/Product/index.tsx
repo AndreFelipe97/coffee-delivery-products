@@ -59,22 +59,17 @@ export function Product({id, imgPath, title, subtile, tags,price}: ProductProps)
       id, title, imgPath, price, amount
     }
 
-    const cart = localStorage.getItem("@CART") ? JSON.parse(String(localStorage.getItem("@CART"))) : null;
+    const cart = localStorage.getItem("@CART") ? JSON.parse(String(localStorage.getItem("@CART"))) : [];
 
-    if(amount > 0) {
-      if (cart) {
-        const indexProduct = cart.findIndex((prod: ProductsAddCart) => prod.id === id);
+    const indexProduct = cart.findIndex((prod: ProductsAddCart) => prod.id === id);
 
-        if(indexProduct !== -1) {
-          cart[indexProduct] = product;
-        } else {
-          cart.push(product)
-        }
-        localStorage.setItem("@CART", JSON.stringify(cart))
-      } else {
-        localStorage.setItem("@CART", JSON.stringify([product]))
-      }
+    if(indexProduct > -1) {
+      cart[indexProduct] = product;
+    } else {
+      cart.push(product)
     }
+    
+    localStorage.setItem("@CART", JSON.stringify(cart))
   }
 
   return (
