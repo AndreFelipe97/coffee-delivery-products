@@ -13,8 +13,16 @@ interface ProductProps {
   tags: Array<string>;
 }
 
+interface ProductsAddCart {
+  title: string;
+  imgPath: string;
+  price: number;
+  amount: number;
+}
+
 export function Product({imgPath, title, subtile, tags,price}: ProductProps) {
   const [amount, setAmount] = useState<number>(0);
+  const [products, setProducts] = useState<Array<ProductsAddCart>>([])
 
   function addAmount() {
     setAmount(state => state + 1)
@@ -22,6 +30,36 @@ export function Product({imgPath, title, subtile, tags,price}: ProductProps) {
 
   function minusAmount() {
     setAmount(state => state > 0 ? state - 1 : state)
+  }
+
+  function addCart() {
+    if (amount > 0) {
+      setProducts([...products, {
+        title, imgPath, price, amount
+      }]);
+
+      const newProducts = JSON.stringify(products);
+
+      if(localStorage.getItem("@COFFEE_DELIVERY_PRODUCTS")) {
+        console.log('Entrou aqui!')
+        const oldProducts = JSON.parse(
+          String(localStorage.getItem("@COFFEE_DELIVERY_PRODUCTS"))
+        );
+
+        oldProducts.push(newProducts);
+
+        localStorage.setItem(
+          "@COFFEE_DELIVERY_PRODUCTS",
+          oldProducts
+        );
+        console.log(localStorage.getItem("@COFFEE_DELIVERY_PRODUCTS"));
+      } else {
+        localStorage.setItem(
+          "@COFFEE_DELIVERY_PRODUCTS",
+          newProducts
+        )
+      }
+    }
   }
 
   return (
@@ -40,9 +78,27 @@ export function Product({imgPath, title, subtile, tags,price}: ProductProps) {
         </div>
         <div className={style['cart-itens-container']}>
           <div className={style['amount']}>
-            <button type="button" onClick={minusAmount}><FiMinus /></button><span>{amount}</span><button type="button" onClick={addAmount}><FiPlus /></button>
+            <button
+              type="button"
+              onClick={minusAmount}
+            >
+              <FiMinus />
+            </button>
+              <span>{amount}</span>
+            <button
+              type="button"
+              onClick={addAmount}
+            >
+              <FiPlus />
+            </button>
           </div>
-          <button className={style['add-cart']}><FiShoppingCart /></button>
+          <button
+            type="button"
+            onClick={addCart}
+            className={style['add-cart']}
+          >
+            <FiShoppingCart />
+          </button>
         </div>
       </div>
     </div>
